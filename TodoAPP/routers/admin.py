@@ -31,7 +31,7 @@ async def list_all_users(db:dependency, user:jwt_dependency):
     user_list = db.query(Users).all()
     return user_list
 
-@router.get('/lis_all', status_code=status.HTTP_200_OK)
+@router.get('/list_all', status_code=status.HTTP_200_OK)
 async def admin_list_all (user:jwt_dependency, db: dependency):
     if user is None or user.get('user_role')!='admin':
         raise HTTPException (status_code=401, detail='Unauthorized User')

@@ -10,10 +10,12 @@ from sqlalchemy.orm import Session
 from .auth import get_current_user
 from fastapi.templating import Jinja2Templates
 from starlette.responses import RedirectResponse
+from ..dependencies import rate_limit_dependency
+
 
 router =APIRouter(
     prefix='/todos',
-    tags=['todos']
+    tags=['todos'], dependencies=[Depends(rate_limit_dependency)]
 )
 templates = Jinja2Templates(directory='TodoAPP/templates')
 

@@ -1,17 +1,17 @@
 #this page binds the model and detabase.py files and acomplish to create the database
 
 from .routers import auth, todos, admin, users
-from fastapi import FastAPI, status, Request
+from fastapi import FastAPI, status, Request, Depends
 from .models import Base
 from .database import engine
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
-from .dependencies import limiter
+from .dependencies import limiter, rate_limit_dependency
 from slowapi.errors import RateLimitExceeded
 from slowapi import _rate_limit_exceeded_handler
 
-app = FastAPI()
+app = FastAPI(dependencies=[Depends(rate_limit_dependency)])
 templates = Jinja2Templates(directory='TodoAPP/templates')
 app.mount("/static",StaticFiles(directory='TodoAPP/static'), name="static")
 

@@ -12,12 +12,13 @@ from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from fastapi.templating import Jinja2Templates
 import os
 from dotenv import load_dotenv
+from ..dependencies import rate_limit_dependency
 
 load_dotenv()
 
 router = APIRouter(
      prefix='/auth',
-     tags=['auth']
+     tags=['auth'], dependencies=[Depends(rate_limit_dependency)]
 )
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated= 'auto')

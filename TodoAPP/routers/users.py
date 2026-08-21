@@ -9,10 +9,11 @@ from ..models import Todos, Users
 from ..database import SessionLocal
 from sqlalchemy.orm import Session
 from .auth import get_current_user
+from ..dependencies import rate_limit_dependency
 
 router =APIRouter(
     prefix='/users',
-    tags=['users']
+    tags=['users'], dependencies=[Depends(rate_limit_dependency)]
 )
 class pw_change (BaseModel):
     Old_password: str

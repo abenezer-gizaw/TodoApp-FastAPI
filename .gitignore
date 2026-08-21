@@ -8,3 +8,4 @@ Testing_knowlege.py
 practice.db
 __pycache__/
 .pytest_cache/
+routers/__pycache__/

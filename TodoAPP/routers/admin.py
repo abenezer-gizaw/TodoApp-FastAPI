@@ -6,13 +6,11 @@ from ..models import Todos, Users
 from ..database import SessionLocal
 from sqlalchemy.orm import Session
 from .auth import get_current_user
+from ..dependencies import rate_limit_dependency
 
-# username: test
-#pw: test
-# to test the admin routes 
 
 router =APIRouter(prefix='/admin',
-     tags=['admin'])
+     tags=['admin'],dependencies=[Depends(rate_limit_dependency)])
 
 def get_db(): # this function still stay the same in most projects, open and close the connection
     db = SessionLocal()

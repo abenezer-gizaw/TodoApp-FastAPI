@@ -6,3 +6,5 @@ BookRequest.py
 Books.py
 Testing_knowlege.py
 practice.db
+__pycache__/
+.pytest_cache/

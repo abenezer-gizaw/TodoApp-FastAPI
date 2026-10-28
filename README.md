@@ -45,7 +45,7 @@ cd TodoApp-FastAPI
 
 python -m venv venv
 
-source venv/bin/activate
+source fastapienv/bin/activate
 
 pip install -r requirements.txt
 ```
